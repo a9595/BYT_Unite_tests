@@ -18,10 +18,10 @@ public class PointTest {
 		Point res1 = p1.add(p2);
 		Point res2 = p1.add(p3);
 		
-		assertEquals(4, res1.x);
-		assertEquals(-21, res1.y);
-		assertEquals(-3, res2.x);
-		assertEquals(12, res2.x);
+		assertEquals(4.0, res1.x);
+		assertEquals(-21.0, res1.y);
+		assertEquals(-3.0, res2.x);
+		assertEquals(12.0, res2.x);
 	}
 	
 	public void testSub() {

@@ -19,7 +19,7 @@ public class Money implements Comparable {
 	 * @return Amount of money in Double type.
 	 */
 	public Integer getAmount() {
-		
+		return amount;
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class Money implements Comparable {
 	 * @return Currency object representing the currency of this Money
 	 */
 	public Currency getCurrency() {
-		
+		return currency;
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class Money implements Comparable {
 	 *  @return String representing the amount of Money.
 	 */
 	public String toString() {
-		
+		return amount + " " + currency.getName();
 	}
 	
 	/**

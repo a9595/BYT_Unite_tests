@@ -21,7 +21,7 @@ public class Quadrilateral {
 		Vector2D v3 = l3.getVector();
 		Vector2D v4 = l4.getVector();
 		
-		return (v1.isOrthogonalTo(v2) &&
+		return (v1.isOrthogonalTo(v2) && //is perpendicular
 				v2.isOrthogonalTo(v3) &&
 				v3.isOrthogonalTo(v4) &&
 				v4.isOrthogonalTo(v1));

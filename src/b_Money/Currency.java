@@ -32,7 +32,7 @@ public class Currency {
 	 * @return name of Currency
 	 */
 	public String getName() {
-		
+		return name;
 	}
 	
 	/** Get the rate of this Currency.
