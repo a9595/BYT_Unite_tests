@@ -10,7 +10,7 @@ public class LineTest {
 	Point p3, p4;
 	Line l1;
 	Line l2;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		p1 = new Point(2, -3);
