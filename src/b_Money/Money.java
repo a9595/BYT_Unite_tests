@@ -1,5 +1,7 @@
 package b_Money;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class Money implements Comparable {
     private int amount;
     private Currency currency;
@@ -20,8 +22,8 @@ public class Money implements Comparable {
      *
      * @return Amount of money in Double type.
      */
-    public Integer getAmount() {
-        return amount;
+    public Double getAmount() {
+        return this.amount / 100.00;
     }
 
     /**
@@ -42,7 +44,7 @@ public class Money implements Comparable {
      * @return String representing the amount of Money.
      */
     public String toString() {
-        return amount + " " + currency.getName();
+        return this.getAmount() + " " + currency.getName();
     }
 
     /**
@@ -75,10 +77,11 @@ public class Money implements Comparable {
      * (Remember to convert the other Money before adding the amounts)
      */
     public Money add(Money other) {
+        throw new NotImplementedException();
         //TODO
-        Integer convertedMoneyValue = other.getCurrency().valueInThisCurrency(other.getAmount(), this.getCurrency());
+        /*Integer convertedMoneyValue = other.getCurrency().valueInThisCurrency(other.getAmount(), this.getCurrency());
         Money sum = new Money(convertedMoneyValue - this.getAmount(), this.getCurrency());
-        return sum;
+        return sum;*/
     }
 
     /**
@@ -89,10 +92,11 @@ public class Money implements Comparable {
      * (Again, remember converting the value of the other Money to this Currency)
      */
     public Money sub(Money other) {
+        throw new NotImplementedException();
         //TODO
-        Integer convertedMoneyValue = other.getCurrency().valueInThisCurrency(other.getAmount(), this.getCurrency());
+        /*Integer convertedMoneyValue = other.getCurrency().valueInThisCurrency(other.getAmount(), this.getCurrency());
         Money sum = new Money(convertedMoneyValue + this.getAmount(), this.getCurrency());
-        return sum;
+        return sum;*/
     }
 
     /**

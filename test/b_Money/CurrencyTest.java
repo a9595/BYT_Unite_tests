@@ -11,54 +11,79 @@ public class CurrencyTest {
     Double rate_SEK = 0.15;
     Double rate_DKK = 0.20;
     Double rate_EUR = 1.5;
+	String nameSEK = "SEK";
+	String nameDKK = "DKK";
+	String nameEUR = "EUR";
 
 	@Before
 	public void setUp() throws Exception {
 		/* Setup currencies with exchange rates */
-		SEK = new Currency("SEK", 0.15);
-		DKK = new Currency("DKK", 0.20);
-		EUR = new Currency("EUR", 1.5);
+		SEK = new Currency(nameSEK, rate_SEK);
+		DKK = new Currency(nameDKK, rate_DKK);
+		EUR = new Currency(nameEUR, rate_EUR);
 	}
 
 	@Test
 	public void testGetName() {
 		//fail("Write test case here");
         String msg = "wrong currency name";
-        assertEquals(msg, "SEK", SEK.getName());
+		//	Act
+		String gottenNameFromSek = SEK.getName();
+
+		//	Assert
+        assertEquals(msg,  nameSEK, gottenNameFromSek);
 	}
-	
+
+	//ok
 	@Test
 	public void testGetRate() {
 		//fail("Write test case here");
         String msg = "wrong currency rate";
-        assertEquals(msg, rate_SEK, SEK.getRate());
 
+		//	Act
+		Double gottenRateFromSEK = SEK.getRate();
+
+		//	Assert
+		assertEquals(msg, rate_SEK, gottenRateFromSEK);
     }
-	
+
+	//ok
 	@Test
 	public void testSetRate() {
         String msg = "wrong currency set rate";
+		//	Arrange
         Double newRate = 0.77;
 
+		//	Act
         SEK.setRate(newRate);
-        assertEquals(msg, newRate, SEK.getRate());
+
+		//	Assert
+		Double gottenRateFromSEK = SEK.getRate();
+        assertEquals(msg, newRate, gottenRateFromSEK);
 
     }
 	
 	@Test
 	public void testGlobalValue() {
-		//TODO
         //fail("Write test case here");
         String msg = "wrong test of GlobalValue";
-        assertTrue(msg, SEK.universalValue(100).equals(15.0));
+		//	Act
+		Integer universalValueFromSek = SEK.universalValue(100);
+
+		//	Assert
+        assertTrue(msg, universalValueFromSek.equals(15));
 	}
 	
 	@Test
 	public void testValueInThisCurrency() {
-
         //fail("Write test case here");
-        String msg = "wrong ValueInThisCurrency"; //TODO
-        assertTrue(msg, EUR.valueInThisCurrency(100, SEK).equals(10));
+        String msg = "wrong ValueInThisCurrency";
+
+		//	Act
+		Integer valueInEurFromSek = EUR.valueInThisCurrency(100, SEK);
+
+		//	Assert
+        assertTrue(msg, valueInEurFromSek.equals(10));
 	}
 
 }
