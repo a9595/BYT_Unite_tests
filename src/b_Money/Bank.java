@@ -6,7 +6,7 @@ public class Bank {
 	private Hashtable<String, Account> accountlist = new Hashtable<String, Account>();
 	private String name;
 	private Currency currency;
-	
+
 	/**
 	 * New Bank
 	 * @param name Name of this bank
@@ -16,7 +16,7 @@ public class Bank {
 		this.name = name;
 		this.currency = currency;
 	}
-	
+
 	/**
 	 * Get the name of this bank
 	 * @return Name of this bank
@@ -24,7 +24,7 @@ public class Bank {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Get the Currency of this bank
 	 * @return The Currency of this bank
@@ -32,7 +32,7 @@ public class Bank {
 	public Currency getCurrency() {
 		return currency;
 	}
-	
+
 	/**
 	 * Open an account at this bank.
 	 * @param accountid The ID of the account
@@ -43,10 +43,10 @@ public class Bank {
 			throw new AccountExistsException();
 		}
 		else {
-			accountlist.get(accountid);
+			accountlist.put(accountid, new Account(accountid, this.currency));
 		}
 	}
-	
+
 	/**
 	 * Deposit money to an account
 	 * @param accountid Account to deposit to
@@ -54,7 +54,7 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If the account does not exist
 	 */
 	public void deposit(String accountid, Money money) throws AccountDoesNotExistException {
-		if (accountlist.containsKey(accountid)) {
+		if (!accountlist.containsKey(accountid)) {
 			throw new AccountDoesNotExistException();
 		}
 		else {
@@ -62,7 +62,7 @@ public class Bank {
 			account.deposit(money);
 		}
 	}
-	
+
 	/**
 	 * Withdraw money from an account
 	 * @param accountid Account to withdraw from
@@ -75,17 +75,17 @@ public class Bank {
 		}
 		else {
 			Account account = accountlist.get(accountid);
-			account.deposit(money);
+			account.withdraw(money);
 		}
 	}
-	
+
 	/**
 	 * Get the balance of an account
 	 * @param accountid Account to get balance from
 	 * @return Balance of the account
 	 * @throws AccountDoesNotExistException If the account does not exist
 	 */
-	public Double getBalance(String accountid) throws AccountDoesNotExistException {
+	public Integer getBalance(String accountid) throws AccountDoesNotExistException {
 		if (!accountlist.containsKey(accountid)) {
 			throw new AccountDoesNotExistException();
 		}
@@ -109,7 +109,7 @@ public class Bank {
 		else {
 			accountlist.get(fromaccount).withdraw(amount);
 			tobank.accountlist.get(toaccount).deposit(amount);
-		}		
+		}
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class Bank {
 	 * @throws AccountDoesNotExistException If one of the accounts do not exist
 	 */
 	public void transfer(String fromaccount, String toaccount, Money amount) throws AccountDoesNotExistException {
-		transfer(fromaccount, this, fromaccount, amount);
+		transfer(fromaccount, this, toaccount, amount);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class Bank {
 		Account account = accountlist.get(accountid);
 		account.addTimedPayment(payid, interval, next, amount, tobank, toaccount);
 	}
-	
+
 	/**
 	 * Remove a timed payment
 	 * @param accountid Id of account to remove timed payment from
@@ -147,7 +147,7 @@ public class Bank {
 		Account account = accountlist.get(accountid);
 		account.removeTimedPayment(id);
 	}
-	
+
 	/**
 	 * A time unit passes in the system
 	 */
@@ -155,5 +155,5 @@ public class Bank {
 		for (Account account : accountlist.values()) {
 			account.tick();
 		}
-	}	
+	}
 }
